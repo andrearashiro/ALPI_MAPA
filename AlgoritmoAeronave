@@ -1,0 +1,53 @@
+Algoritmo Verificar Voo
+Tipo
+  Aeronave = registro
+  capacidadeTanque: real
+  mediaAeronave: real
+  quantidadeCombustivel: real
+  trechoPlanejado: inteiro
+  trechoAlternativo: inteiro
+Fim_registro
+
+Procedimento preencherDados(Var verificaVoo: aeronave)
+  Início
+    Escreval(“Digite o valor da capacidade em litros do tanque da Aeronave:”)
+    Leia(verificaVoo.capacidadeTanque)
+    Escreval(“Digite a média de consumo da aeronave, em litros por km”)
+    Leia(verificaVoo.mediaAeronave)
+    Escreval(“Digite a quantidade de combustível existente no tanque da aeronave, em litros”)
+    Leia(verificaVoo.quantidadeCombustivel)
+    Escreval(“Digite a distância, em km, do trecho planejado”)
+    Leia(verificaVoo.trechoPlanejado)
+    Escreval(“Digite a distância, em km, do trecho alternativo (emergência)”)
+    Leia(verificaVoo.trechoAlternativo)
+Fim_procedimento
+
+Procedimento calculandoVoo(Var verificaVoo: aeronave)
+  Var
+    trechoTotalCombustivel: real
+    trechoTotalComMargem: inteiro
+    abastecerCombustivel: real
+
+  Início
+    trechoTotalCombustivel <- ((verificaVoo.trechoPlanejado + verofocaVoo.trechoAlternativo)*verificaVoo.mediaAeronave)*1.3
+    trechoTotalComMargem <- (verificaVoo.trechoPlanejado + verificaVoo.trechoAlternativo)*1.3
+    abstercerCombustivel <- verficaVoo.capacidadeTanque – verificaVoo.quantidadeCombustivel
+    Escreval(“A quantidade de combustível necessária para realizar o voo é de: ”, trechoTotalCombustivel)
+      Se (trechoTotalCombustivel > verificaVoo.capacidadeTanque) então
+      Escreval(“Voo reprovado, reveja seu planejamento, tanque menor que o combustível necessário”)
+      Senão
+        Escreval(“Voo aprovado! Prepare as malas!”)
+        Escreval(“Dados do Voo: ”)
+        Escreva(“A distância do trecho principal é de: ”, verificaVoo.trechoPlanejado, “A distância do trecho alternativo é de: ”, verificaVoo.trechoAlternativo,”A distância total com margem de segurança é de: ”, trechoTotalComMargem, “A quantidade de combustível necessária para realizar o voo é de:”, trechoTotalCombustivel, “Para completar o tanque de combustível da aeronave faltam: ”, abastercerCombustivel)
+      Fim_se
+Fim_procedimento
+
+Var
+  verificaVoo: aeronave
+Início
+  Escreval(“Bem vindo ao sistema de planejamento de voo, antes de voar, preencha os dados abaixo: ”)
+  preencherDados(verificaVoo)
+
+  Escreval(“Vamos verificar se é possível realizar o voo!”)
+  calculandoVoo(verificaVoo)
+Fim
